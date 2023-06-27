@@ -12,7 +12,7 @@ pipeline {
     stage ('Build') {
       steps {
         sh '''
-        	cd ./maven/simple-war 
+        	cd ./Maven/simple-war 
           cat ./src/main/webapp/index.jsp
         	mvn clean package
         	cd ./target/
@@ -20,22 +20,7 @@ pipeline {
            '''
       }
     }
-    stage ('Deploy') {
-      steps {
-        script {
-        echo Deployment should be conducted  
-	// url: ‘http://<ip_address>:8080/’ –> Your tomcat url
-          // contextPath: ‘/pipeline’         –> Context path to deploy in Tomcat
-          // onFailure: false                 –> Flag used to control the deployment, 
-          //                                     If pipeline Job fails, below deploy block will not run.
-          // war: ‘target/*.war’ –> Your war file name
-          //deploy adapters: [tomcat9(credentialsId: 'tomcat_manager', path: '', url: 'http://65.2.40.144:8080/')], 
-                           //contextPath: '/itdefined-war-1.0.0', 
-                           //onFailure: false, 
-                           //war: 'maven/simple-war/target/*.war' 
-        }
-      }
-    }
+    
   }
 
   // post { 
