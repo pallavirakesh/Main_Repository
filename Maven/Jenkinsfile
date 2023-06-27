@@ -20,7 +20,21 @@ pipeline {
            '''
       }
     }
-    
+    stage ('Deploy') {
+      steps {
+        script {  
+	// url: ‘http://<ip_address>:8080/’ –> Your tomcat url
+          // contextPath: ‘/pipeline’         –> Context path to deploy in Tomcat
+          // onFailure: false                 –> Flag used to control the deployment, 
+          //                                     If pipeline Job fails, below deploy block will not run.
+          // war: ‘target/*.war’ –> Your war file name
+		deploy adapters: [tomcat9(path: '', url: 'http://52.66.239.132:8080/')], 
+			contextPath: 'itdefined-war-1.0.0',
+			war: '/var/lib/jenkins/workspace/CI_CD_Maven_Project/Maven/simple-war/target/itdefined-war-1.0.0.war'
+          
+        }
+      }
+    }
   }
 
   // post { 
